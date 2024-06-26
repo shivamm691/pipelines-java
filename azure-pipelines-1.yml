@@ -4,7 +4,8 @@
 
 trigger:
 - n
-
+pool:
+  name: asdds
 resources:
 - repo: self
 
