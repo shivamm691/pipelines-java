@@ -10,13 +10,23 @@ pool:
   name: asdds
 
 steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+- script: echo Hello, World!
+  displayName: 'Print Hello, World!'
+
+- script: |
+    # Perform disk space check
+    df -h /
+  displayName: 'Disk Space Check'
+
+- script: |
+    # Simulate a health-check command (replace with actual health-check command)
+    echo Performing health-check...
+    # Example: Check if a service is running
+    service_status=$(systemctl is-active myservice)
+    if [ "$service_status" = "active" ]; then
+      echo "Health-check passed: Service is active."
+    else
+      echo "Health-check failed: Service is not active."
+      exit 1
+    fi
+  displayName: 'Health-check'
